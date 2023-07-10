@@ -4,13 +4,13 @@
   "description": "Shell for React/Express combined app",
   "main": "server.js",
   "scripts": {
-    "start": "(cd server-express && npm start);",
-    "install:server": "cd server-express && npm install",
-    "install:client": "cd client-react && npm install",
-    "build:client": "cd client-react && npm run build",
+    "start": "(cd backend && npm start);",
+    "install:server": "cd backend && npm install",
+    "install:client": "cd frontend && npm install",
+    "build:client": "cd frontend && npm run build",
     "install": "(npm run install:server) && (npm run install:client)",
     "build": "npm run build:client",
-    "deploy": "mv -f client-react/build/ ./public"
+    "deploy": "mv -f frontend/build/ ./public"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "pg": "^8.11.1"
+  }
 }
