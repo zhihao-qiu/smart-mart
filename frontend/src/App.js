@@ -1,30 +1,24 @@
 import 'App.css';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import AlgoliaSearch from './components/AlgoliaSearch';
+import AlgoliaResult from './components/AlgoliaResult';
+import useApplicationData from 'hooks/useApplicationData';
 
 export default function App() {
-  const [status, setStatus] = useState({});
-
-  useEffect(() => {
-    axios.get('/api/status')
-      .then((res) => {
-        setStatus(res.data);
-      })
-      .catch((err) => {
-        setStatus({ error: err.message });
-      });
-  }, []);
+  const {
+    state,
+    setAlgoliaRequest,
+    onSubmitAlgoliaSearch,
+  } = useApplicationData();
 
   return (
     <div className="App">
-      <h1>Hello React World</h1>
+      <AlgoliaSearch
+        state={state}
+        setAlgoliaRequest={setAlgoliaRequest}
+        onSubmitAlgoliaSearch={onSubmitAlgoliaSearch}
+      />
+      {state.algoliaResponse && <AlgoliaResult state={state} />}
 
-      <section>
-        {!status.error &&
-          <>API Version: <code>{status.version}</code></>}
-        {status.error &&
-          <>API Error: <code>{status.error}</code></>}
-      </section>
     </div>
   );
 }
