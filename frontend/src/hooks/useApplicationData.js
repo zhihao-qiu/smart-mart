@@ -24,9 +24,9 @@ export default function useApplicationData() {
     //   },
     //   body: JSON.stringify({ algolia_search: state.algoliaRequest })
     // }
-    const ALGOLIA_APP_ID = "IA3FBCMVMY";
-    const ALGOLIA_API_KEY = "5f55d0fc24e0af71460bcbe84cd7307d";
-    const ALGOLIA_INDEX_NAME = "demo_algolia";
+    const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
+    const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
+    const ALGOLIA_INDEX_NAME = ALGOLIA_INDEX_NAME;
 
 
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
