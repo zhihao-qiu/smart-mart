@@ -17,11 +17,11 @@ npm start
 
 ### Starting as Individual Apps (for Development)
 ```
-cd server-express
+cd backend
 npm install
 npm run local
 
-cd client-react
+cd frontend
 npm install
 npm start
 ```
