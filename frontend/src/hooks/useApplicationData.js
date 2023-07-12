@@ -29,8 +29,6 @@ export default function useApplicationData() {
     // const ALGOLIA_API_KEY = ENV.ALGOLIA_API_KEY;
     // const ALGOLIA_INDEX_NAME = ENV.ALGOLIA_INDEX_NAME;
 
-console.log("HERE");
-console.log(ALGOLIA_APP_ID);
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
@@ -41,7 +39,6 @@ console.log(ALGOLIA_APP_ID);
       .then(results => {
         // console.log(results);
         dispatch({ type: 'SET_ALGOLIA_RESPONSE', payload: results });
-        console.log(state.algoliaResponse);
 
       })
       .catch(error => {

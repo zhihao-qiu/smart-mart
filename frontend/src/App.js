@@ -2,6 +2,7 @@ import 'App.css';
 import AlgoliaSearch from './components/AlgoliaSearch';
 import AlgoliaResult from './components/AlgoliaResult';
 import useApplicationData from 'hooks/useApplicationData';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   const {
