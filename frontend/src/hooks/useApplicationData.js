@@ -2,6 +2,7 @@ import { useReducer, useEffect } from 'react';
 import reducer from '../reducer/reducer';
 import axios from 'axios';
 import algoliasearch from 'algoliasearch';
+import {ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME} from '../env'
 
 const initialState = {
   algoliaRequest: '',
@@ -24,11 +25,12 @@ export default function useApplicationData() {
     //   },
     //   body: JSON.stringify({ algolia_search: state.algoliaRequest })
     // }
-    const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
-    const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
-    const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME;
+    // const ALGOLIA_APP_ID = ENV.ALGOLIA_APP_ID;
+    // const ALGOLIA_API_KEY = ENV.ALGOLIA_API_KEY;
+    // const ALGOLIA_INDEX_NAME = ENV.ALGOLIA_INDEX_NAME;
 
-
+console.log("HERE");
+console.log(ALGOLIA_APP_ID);
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
@@ -43,8 +45,8 @@ export default function useApplicationData() {
 
       })
       .catch(error => {
-        console.error(error);
-        response.status(500).json({ error: "Internal server error" });
+        console.error(error.message);
+        // response.status(500).json({ error: "Internal server error" });
       });
   };
   return {
