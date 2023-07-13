@@ -5,7 +5,7 @@ import { ListGroup } from 'react-bootstrap';
 import '../css/AlgoliaResult.css'
 
 const AlgoliaResult = (props) => {
-  const results = props.state.algoliaResponse;
+  const results = props.state.algoliaResponse.hits;
 
   const renderProducts = () => {
     if (!results) {
@@ -34,6 +34,7 @@ const AlgoliaResult = (props) => {
   return (
     <div>
       <h1>You might be interested in these products</h1>
+      {props.state.algoliaRequest}
       {renderProducts()}
     </div>
   );
