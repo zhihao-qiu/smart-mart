@@ -13,6 +13,7 @@ export default function App() {
     onSubmitAlgoliaSearch,
   } = useApplicationData();
 
+  
   return (
     <div className="App">
       <NavBar/>
