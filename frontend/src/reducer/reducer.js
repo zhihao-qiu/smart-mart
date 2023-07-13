@@ -8,8 +8,18 @@ export default function reducer(state, action) {
     case 'SET_ALGOLIA_RESPONSE':
       return {
         ...state,
-        algoliaResponse: action.payload.hits,
+        algoliaResponse: action.payload,
       };
+    case 'SET_GPT_RESPONSE':
+      return {
+        ...state,
+        gptResponse: action.payload,
+      };
+    case 'SET_GPT_REQUEST':
+      return {
+        ...state,
+        gptRequest: action.payload,
+      }
     default:
       return state;
   }
