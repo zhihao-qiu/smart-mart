@@ -1,47 +1,11 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
 
 // import { Image, Container, Row, Col } from 'react-bootstrap';
 
 const Product = (props) => {
   const product = props.product;
-
+  product.name = product.title;
   return (
-  //   <div className="group relative shadow-lg" >
-  //   <div className=" min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
-  //     <img
-  //       alt="Product Image"
-  //       src={product.image}
-  //       className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-  //     />
-  //   </div>
-  //   <div className="flex justify-between p-3">
-  //     <div>
-  //       <h3 className="text-sm text-gray-700">
-  //         <a>
-  //           <span aria-hidden="true" className="absolute inset-0" />
-  //           <span style={{ fontSize: '16px', fontWeight: '600' }}>{product.name}</span>
-  //         </a>
-  //       </h3>
-  //     </div>
-  //     <p className="text-sm font-medium text-green-600">${product.price}</p>
-  //   </div>
-  // </div>
-
-    // <div classNameName='product_div'>
-    //   <Container>
-    //     <Row>
-    //       <Col xs={12}><strong>{product.name}</strong></Col>
-    //     </Row>
-    //     <Row>
-    //       <Col xs={4}><Image src={product.image} alt="Product Image" thumbnail rounded /></Col>
-    //       <Col xs={8}>{product.description}<br />
-    //       ${product.price}
-    //       </Col>
-    //     </Row>
-    //   </Container>
-
-    // </div>
 
 <div className="flex font-serif">
   <div className="flex-none w-52 relative">

@@ -1,10 +1,8 @@
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import Product from './Product';
 import '../css/Product.css';
 
 export default function ProductList(props) {
   const {products} = props;
-
   const list = products.map((product) => {
     return (<div className='product-item' key={product.id}><Product product={product} /></div>)
   })
