@@ -1,7 +1,6 @@
 import 'App.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import AlgoliaSearch from './components/AlgoliaSearch';
 import GPTSearch from './components/GPTSearch';
 import AlgoliaResult from './components/AlgoliaResult';
 import GPTResult from './components/GPTResult';
@@ -18,20 +17,19 @@ export default function App() {
     onSubmitSearch,
   } = useApplicationData();
 
-  const [Products,setProducts] = useState([]);
+  const [Products, setProducts] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
     axios.get("https://fakestoreapi.com/products")
-    .then((res) => {
-      setProducts(res.data);
-    })
-    .catch(err => console.log(err));
-  },[])
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <div className="App">
-      <NavBar/>
-      <AlgoliaSearch>
+      <NavBar />
       <GPTSearch
         state={state}
         setGPTRequest={setGPTRequest}
@@ -39,10 +37,9 @@ export default function App() {
       />
       {state.gptResponse && <GPTResult state={state} />}
       {state.algoliaResponse && <AlgoliaResult state={state} />}
-</AlgoliaSearch>
 
-      <ProductList products={Products}/>
-      <ProductDetails/>
+      <ProductList products={Products} />
+      <ProductDetails />
     </div>
   );
 
