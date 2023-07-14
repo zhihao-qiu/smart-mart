@@ -2,7 +2,6 @@ import 'App.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import GPTSearch from './components/GPTSearch';
-import AlgoliaResult from './components/AlgoliaResult';
 import GPTResult from './components/GPTResult';
 import useApplicationData from 'hooks/useApplicationData';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,8 +15,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 export default function App() {
   const {
     state,
-    setGPTRequest,
+    setAskQuestions,
     onSubmitSearch,
+    onClickReset,
   } = useApplicationData();
 
   const [Products, setProducts] = useState([]);
@@ -38,13 +38,16 @@ export default function App() {
         <NavBar />
        <GPTSearch
         state={state}
-        setGPTRequest={setGPTRequest}
+        setAskQuestions={setAskQuestions}
         onSubmitSearch={onSubmitSearch}
-        />
-        {state.gptResponse && <GPTResult state={state} />}
-        {state.algoliaResponse && <AlgoliaResult state={state} />}
+        onClickReset={onClickReset}
+      />
+      {state.gptResponse && <GPTResult state={state} />}
+      {/* {state.algoliaResponse && <AlgoliaResult state={state} />} */}
 
-        <ProductList 
+      {state.algoliaResponse && <ProductList products={state.algoliaResponse.hits} />}
+      {/* <ProductList products={state.algoliaResponse.hits} /> */}
+      <ProductList 
         products={Products}
         ProductData={ProductData}
         setProductData={setProductData}

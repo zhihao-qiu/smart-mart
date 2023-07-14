@@ -4,8 +4,10 @@ import { useState } from 'react';
 
 const Product = (props) => {
 
-  const { product, ProductData, setProductData, Cart, setCart} = props;
-
+  const { ProductData, setProductData, Cart, setCart} = props;
+  const product = props.product;
+  if (!product.name)  product.name = product.title || product.brand;
+  
   product.name = product.title;
   const handleClick = () => {
     setProductData({
@@ -23,6 +25,7 @@ const Product = (props) => {
     setCart([...Cart, product])
     console.log(Cart);
   }
+
 
   return (
 
@@ -57,7 +60,7 @@ const Product = (props) => {
       </button>
     </div>
     <p className="text-sm text-slate-500">
-      Free shipping until July 21st!
+    {product.description}
     </p>
   </form>
 </div>

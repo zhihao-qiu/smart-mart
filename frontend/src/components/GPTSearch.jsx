@@ -1,18 +1,21 @@
 import React from 'react';
 import { InputGroup, Form, Button } from 'react-bootstrap';
+import '../css/GPTSearch.css'
 
 const GPTSearch = (props) => {
   return (
     <div>
-      <h1>You can try our search engine</h1>
       <form onSubmit={props.onSubmitSearch}>
         <InputGroup >
-          <InputGroup.Text >Just let us know something about your receiptant, <br />
-            e.g age, gender, hobbies, your budget range, etc.</InputGroup.Text>
+
+            <InputGroup.Text className="custom-text">{props.state.showText}
+            </InputGroup.Text>
+
           <Form.Control as="textarea" aria-label="with textarea" name='searchOption'
-            value={props.state.gptRequest}
-            onChange={props.setGPTRequest} />
-          <Button as="button" variant="primary" type="submit"> Try it! </Button>
+            value={props.state.askQuestions}
+            onChange={props.setAskQuestions} />
+          <Button as="button" variant="primary" type="button" className="flex-none w-1/8 h-13 uppercase font-small tracking-wider bg-blue-500 text-white" onClick={props.onClickReset}> Reset </Button>
+          <Button as="button" variant="success" type="submit" className="flex-none w-1/8 h-13 uppercase font-small tracking-wider bg-green-500 text-white"> Try it! </Button>
         </InputGroup>
       </form>
     </div>

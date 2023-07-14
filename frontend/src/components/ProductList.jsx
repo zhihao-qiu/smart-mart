@@ -2,7 +2,7 @@ import Product from './Product';
 import '../css/Product.css';
 
 export default function ProductList(props) {
-  
+
   const {products} = props;
   console.log(props);
   const list = products.map((product) => {
@@ -10,7 +10,10 @@ export default function ProductList(props) {
   })
 
   return (
-  <div className='product-list'>
+  //  <div className='product-list'>
+  //   {list}
+  //   </div>
+  <div className='product-list' key="product-list">
     {list}
   </div>
   )

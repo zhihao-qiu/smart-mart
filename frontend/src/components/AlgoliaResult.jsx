@@ -37,7 +37,6 @@ const AlgoliaResult = (props) => {
 
   return (
     <div>
-      <h1>You might be interested in these products</h1>
       {props.state.algoliaRequest}
       {renderProducts()}
     </div>
