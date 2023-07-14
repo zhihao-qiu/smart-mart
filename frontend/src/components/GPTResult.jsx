@@ -5,13 +5,22 @@ import '../css/AlgoliaResult.css';
 const GPTResult = (props) => {
   const results = props.state.gptResponse;
   if (!results) {
-    return <p>Loading...</p>;
+    return (
+      <Container>
+        <Row>
+          <Col>Loading...</Col>
+        </Row>
+      </Container>
+    );
   }
 
   return (
     <Container>
       <Row>
         <Col>{results}</Col>
+      </Row>
+      <Row>
+        <Col>You might be interested in these products</Col>
       </Row>
     </Container>
   );
