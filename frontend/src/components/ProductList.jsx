@@ -2,15 +2,14 @@ import Product from './Product';
 import '../css/Product.css';
 
 export default function ProductList(props) {
+  
   const {products} = props;
+  console.log(props);
   const list = products.map((product) => {
-    return (<div className='product-item' key={product.id}><Product product={product} /></div>)
+    return (<div className='product-item' key={product.id}><Product product={product} ProductData={props.ProductData} setProductData={props.setProductData} Cart={props.Cart} setCart={props.setCart}/></div>)
   })
 
   return (
-  //  <div className='product-list'>
-  //   {list}
-  //   </div>
   <div className='product-list'>
     {list}
   </div>

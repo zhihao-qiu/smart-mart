@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactJson from 'react-json-view';
 import Product from './Product';
 import { ListGroup } from 'react-bootstrap';
 import '../css/AlgoliaResult.css'

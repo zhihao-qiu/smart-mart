@@ -1,10 +1,29 @@
 import React from 'react';
-
-// import { Image, Container, Row, Col } from 'react-bootstrap';
+import { Link, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 const Product = (props) => {
-  const product = props.product;
+
+  const { product, ProductData, setProductData, Cart, setCart} = props;
+
   product.name = product.title;
+  const handleClick = () => {
+    setProductData({
+        id: product.id,
+        name: product.title,
+        price: product.price,
+        description: product.description,
+        image: product.image,
+        price: product.price
+      }      
+    )
+  }
+
+  const addToCart = () => {
+    setCart([...Cart, product])
+    console.log(Cart);
+  }
+
   return (
 
 <div className="flex font-serif">
@@ -13,9 +32,11 @@ const Product = (props) => {
   </div>
   <form className="flex-auto p-6">
     <div className="flex flex-wrap items-baseline">
-      <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900">
+     <Link to='/productdetails' onClick={handleClick}>
+      <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900" >
         {product.name}
       </h1>
+      </Link> 
       <div className="flex-auto text-lg font-medium text-slate-500">
         ${product.price}
       </div>
@@ -25,7 +46,7 @@ const Product = (props) => {
     </div>
     <div className="flex space-x-4 mb-5 text-sm font-medium">
       <div className="flex-auto flex space-x-4 pr-4">
-        <button className="flex-none w-1/2 h-12 uppercase font-small tracking-wider bg-slate-900 text-white" type="submit">
+        <button className="flex-none w-1/2 h-12 uppercase font-small tracking-wider bg-slate-900 text-white" type='button' onClick={addToCart}>
           Add to cart
         </button>
       </div>
@@ -40,6 +61,7 @@ const Product = (props) => {
     </p>
   </form>
 </div>
+
 )
 };
 export default Product;
