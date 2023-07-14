@@ -18,8 +18,7 @@ export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    console.log(state.answerIndex);
-    if (state.answerIndex == 5) {
+    if (state.answerIndex == 1) {
       submitSearch();
     }
   }, [state.answerIndex]);
@@ -70,8 +69,7 @@ export default function useApplicationData() {
 
   const submitSearch = async () => {
     dispatch({ type: 'SET_SHOW_TEXT', payload: 'Loading...' });
-    console.log('after:', state.answerIndex);
-    console.log(state.gptRequest);
+
     // sending request to gpt
     const { Configuration, OpenAIApi } = require("openai");
     const configuration = new Configuration({
@@ -108,10 +106,18 @@ export default function useApplicationData() {
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
+    const requestOptions = {
+      // page: 5,
+      hitsPerPage: 15
+    }
+    // const requestOfAlgolia = 'samsung'
+    const requestOfAlgolia = state.algoliaRequest
+
     index
-      .search(state.algoliaRequest)
+      // .search(requestOfAlgolia)
+      .search(requestOfAlgolia, requestOptions)
       .then(results => {
-        // console.log(results);
+        console.log(results);
         dispatch({ type: 'SET_ALGOLIA_RESPONSE', payload: results });
 
       })
