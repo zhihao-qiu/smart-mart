@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Product = (props) => {
 
-  const { ProductData, setProductData, Cart, setCart} = props;
+  const { setProductData, Cart, setCart} = props;
   const product = props.product;
   if (!product.name)  product.name = product.title || product.brand;
-  
+
   product.name = product.title;
   const handleClick = () => {
     setProductData({

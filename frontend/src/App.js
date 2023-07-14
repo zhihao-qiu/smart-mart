@@ -15,7 +15,7 @@ export default function App() {
   return (
     <div className="App">
       <Router>       
-        <NavBar/>
+        <NavBar Cart={Cart}/>
         <Routes>
           <Route path="/" element={<Home ProductData={ProductData} setProductData={setProductData} Cart={Cart} setCart={setCart}/>}/>
           <Route path="/productdetails" element={<ProductDetails product={ProductData}/>}/>
