@@ -4,7 +4,7 @@ import React from 'react';
 
 const Product = (props) => {
   const product = props.product;
-  product.name = product.title;
+  if (!product.name)  product.name = product.title || product.brand;
   return (
 
 <div className="flex font-serif">
@@ -36,7 +36,7 @@ const Product = (props) => {
       </button>
     </div>
     <p className="text-sm text-slate-500">
-      Free shipping until July 21st!
+    {product.description}
     </p>
   </form>
 </div>

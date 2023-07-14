@@ -11,7 +11,7 @@ export default function ProductList(props) {
   //  <div className='product-list'>
   //   {list}
   //   </div>
-  <div className='product-list'>
+  <div className='product-list' key="product-list">
     {list}
   </div>
   )
