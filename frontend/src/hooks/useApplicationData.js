@@ -17,11 +17,12 @@ const initialState = {
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(()=> {
+  useEffect(() => {
+    console.log(state.answerIndex);
     if (state.answerIndex == 5) {
       submitSearch();
     }
-  },[state.answerIndex])
+  }, [state.answerIndex]);
 
   const setAskQuestions = (event) => {
     dispatch({ type: 'ASK_QUESTIONS', payload: event.target.value });
@@ -65,8 +66,6 @@ export default function useApplicationData() {
       }
     }
 
-
-
   };
 
   const submitSearch = async () => {
@@ -80,6 +79,7 @@ export default function useApplicationData() {
     });
     const openai = new OpenAIApi(configuration);
     console.log(state.gptRequest);
+
     const chat_completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: state.gptRequest }],
@@ -90,17 +90,19 @@ export default function useApplicationData() {
     dispatch({ type: 'SET_SHOW_TEXT', payload: 'I think...' });
     console.log(result);
 
-    const regex = /^\d+\.\s(.+?):/gm;
-    const categories = [];
+    const chat_completion_keywords = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: result + "Can you pick out all the keywords, and put them in an array?" }],
+    });
 
-    let match;
-    while ((match = regex.exec(result))) {
-      const categoryName = match[1].trim();
-      categories.push(categoryName);
-    }
+    const result_keywords = chat_completion_keywords.data.choices[0].message?.content;
+    console.log(result_keywords);
 
-    console.log(categories);
-    dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: categories.join(',') });
+    const regex = /[\w\s]+/g;
+    const exacted_keywords = result_keywords.match(regex);
+    console.log(exacted_keywords);
+
+    dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: exacted_keywords });
 
     // retrive data from algolia
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
@@ -118,6 +120,8 @@ export default function useApplicationData() {
         dispatch({ type: 'SET_SHOW_TEXT', payload: error.messasge });
         // response.status(500).json({ error: "Internal server error" });
       });
+
+    dispatch({ type: 'SET_ANSWER_INDEX' });
   };
 
   return {
