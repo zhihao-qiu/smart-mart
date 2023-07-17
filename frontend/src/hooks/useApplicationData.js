@@ -18,7 +18,7 @@ export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    if (state.answerIndex == 1) {
+    if (state.answerIndex == 5) {
       submitSearch();
     }
   }, [state.answerIndex]);
@@ -107,11 +107,13 @@ export default function useApplicationData() {
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
     const requestOptions = {
-      // page: 5,
-      hitsPerPage: 15
+      // page: 1,
+      // similarQuery: 'black',
+      // so far since we don't have pagination feature, set the hitsPerPage: 100 for now
+      hitsPerPage: 100
     }
-    // const requestOfAlgolia = 'samsung'
-    const requestOfAlgolia = state.algoliaRequest
+    const requestOfAlgolia = ['black', 'iPhone']
+    // const requestOfAlgolia = state.algoliaRequest
 
     index
       // .search(requestOfAlgolia)
