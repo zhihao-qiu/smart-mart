@@ -1,28 +1,22 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import '../css/AlgoliaResult.css';
 
 const GPTResult = (props) => {
   const results = props.state.gptResponse;
   if (!results) {
     return (
-      <Container>
-        <Row>
-          <Col>Loading...</Col>
-        </Row>
-      </Container>
+      <Alert key='info' variant='info'>
+      Loading...
+      </Alert>
     );
   }
 
   return (
-    <Container>
-      <Row>
-        <Col>{results}</Col>
-      </Row>
-      <Row>
-        <Col>You might be interested in these products</Col>
-      </Row>
-    </Container>
+    <Alert key='info' variant='info'>
+      {results}
+      <br />You might be interested in these products --
+    </Alert>
   );
 
 };

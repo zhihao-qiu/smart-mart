@@ -36,7 +36,12 @@ const Product = (props) => {
     <div className="flex flex-col items-baseline">
      <Link to='/productdetails' onClick={handleClick}>
       <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900" >
-        {product.name || product._highlightResult.name.value.replace("<em>","").replace("</em>","")}
+      <span
+      dangerouslySetInnerHTML={{
+        __html: product.name || product._highlightResult.name.value,
+      }}
+    />
+        {/* {product.name || product._highlightResult.name.value.replace("<em>","").replace("</em>","")} */}
       </h1>
       </Link>
       <div className="flex-auto text-lg font-medium text-slate-500">
