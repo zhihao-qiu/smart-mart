@@ -20,8 +20,9 @@ const Product = (props) => {
     )
   }
 
-  const addToCart = () => {
+  const addToCart = () => {    
     setCart([...Cart, product])
+
   }
 
 

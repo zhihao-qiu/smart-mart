@@ -110,10 +110,9 @@ export default function useApplicationData() {
       // page: 1,
       // similarQuery: 'black',
       // so far since we don't have pagination feature, set the hitsPerPage: 100 for now
-      hitsPerPage: 100
+      hitsPerPage: 15
     }
-    const requestOfAlgolia = ['black', 'iPhone']
-    // const requestOfAlgolia = state.algoliaRequest
+    const requestOfAlgolia = state.algoliaRequest
 
     index
       // .search(requestOfAlgolia)

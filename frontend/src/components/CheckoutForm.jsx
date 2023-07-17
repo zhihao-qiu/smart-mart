@@ -58,7 +58,7 @@ export default function CheckoutForm(props) {
               </button>
             </div>
             {/*body*/}
-            <form id="payment-form" onSubmit={handleSubmit}>
+            <form className="px-5 py-3" id="payment-form" onSubmit={handleSubmit}>
               <PaymentElement id="payment-element" />
               <div className="flex items-center justify-center p-2 border-t border-solid border-slate-200 rounded-b">
               <button
