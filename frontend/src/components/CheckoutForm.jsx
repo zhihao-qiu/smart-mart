@@ -25,7 +25,7 @@ export default function CheckoutForm(props) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `http://localhost:3000/completion`,
       },
     });
 
@@ -60,19 +60,21 @@ export default function CheckoutForm(props) {
             {/*body*/}
             <form id="payment-form" onSubmit={handleSubmit}>
               <PaymentElement id="payment-element" />
-              <button className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm mx-2 my-3 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                disabled={isProcessing || !stripe || !elements} id="submit">
-                <span id="button-text">
-                  {isProcessing ? "Processing ... " : "Pay now"}
-                </span>
-              </button>
+              <div className="flex items-center justify-center p-2 border-t border-solid border-slate-200 rounded-b">
               <button
-                className="text-red-500 background-transparent font-bold uppercase px-6 py-3 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-3 text-sm outline-none focus:outline-none ease-linear transition-all duration-150"
                 type="button"
                 onClick={() => setShowModal(false)}
               >
                 Close
               </button>
+              <button className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm mx-2 my-3 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+                disabled={isProcessing || !stripe || !elements} id="submit">
+                <span id="button-text">
+                  {isProcessing ? "Processing ... " : "Pay now"}
+                </span>
+              </button>
+              </div>
             </form>
           </div>
         </div>
