@@ -7,12 +7,11 @@ const GPTSearch = (props) => {
     <div>
       <form onSubmit={props.onSubmitSearch}>
         <InputGroup >
-          {props.state.showText == 'Loading...' &&
-            <InputGroup.Text>
+          <InputGroup.Text className="custom-text">
+            {props.state.showText == 'Calculating...' &&
               <Spinner animation="border" size="md" variant="warning" />
-            </InputGroup.Text>
-          }
-          <InputGroup.Text className="custom-text">{props.state.showText}
+            }
+            {props.state.showText}
           </InputGroup.Text>
 
           <Form.Control as="textarea" aria-label="with textarea" name='searchOption'
@@ -21,6 +20,7 @@ const GPTSearch = (props) => {
           <Button as="button" variant="primary" type="button" className="flex-none w-1/8 h-13 uppercase font-small tracking-wider bg-blue-500 text-white" onClick={props.onClickReset}> Reset </Button>
           <Button as="button" variant="success" type="submit" className="flex-none w-1/8 h-13 uppercase font-small tracking-wider bg-green-500 text-white"> Try it! </Button>
         </InputGroup>
+
       </form>
     </div>
   );
