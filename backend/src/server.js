@@ -3,6 +3,8 @@ const express = require("express");
 const path = require('path');
 const { getProducts } = require('./db/queries');
 
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -17,16 +19,34 @@ app.get("/api/status", (req, res) => {
   res.json({version: "1.01"});
 });
 
-app.use(function(req, res) {
-  res.status(404);
+app.get("/config", (req, res) => {
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  });
 });
 
-app.get("/api/photos", (req, res) => {
-  getProducts
-  .then((result) => {
-    return result
-  })
+app.post("/create-payment-intent", async (req, res) => {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: "USD",
+      amount: 1999,
+      automatic_payment_methods: { enabled: true },
+    });
+
+    // Send publishable key and PaymentIntent details to client
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (e) {
+    return res.status(400).send({
+      error: {
+        message: e.message,
+      },
+    });
+  }
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}!`);
