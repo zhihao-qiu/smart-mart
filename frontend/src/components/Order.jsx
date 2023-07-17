@@ -1,22 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import PaymentDetails from './PaymentDetails';
-import CheckoutForm from './CheckoutForm';
+import CheckoutForm from './CheckoutForm'
 import { Link } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Order = (props) => {
 
   const cart = props.Cart;
 
   const [showModal, setShowModal] = useState(false);
-  // const [showModal2, setShowModal2] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
   const modalClick = () => {
     setShowModal(!showModal);
   };
-  // const modalClick2 = () => {
-  //   setShowModal2(!showModal2);
-  // };
+  const modalClick2 = () => {
+    setShowModal2(!showModal2);
+  };
+
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    fetch("/config").then(async (r) => {
+      const { publishableKey } = await r.json();
+      setStripePromise(loadStripe(publishableKey));
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch("/create-payment-intent", {
+      method: "POST",
+      body: JSON.stringify({}),
+    }).then(async (result) => {
+      var { clientSecret } = await result.json();
+      setClientSecret(clientSecret);
+    });
+  }, []);
 
   const orderList = cart.map((item) => {
     return (
@@ -117,7 +139,7 @@ const Order = (props) => {
                   data-te-ripple-color="light">
                   Edit Details
                 </button>
-                <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800"
+                <button onClick={modalClick2} className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800"
                   data-te-toggle="modal"
                   data-te-target="#exampleModalCenter"
                   data-te-ripple-init
@@ -130,6 +152,11 @@ const Order = (props) => {
         </div>
       </div>
       {showModal && <PaymentDetails setShowModal={setShowModal} userInfo={userInfo} setUserInfo={setUserInfo} />}
+      {showModal2 && clientSecret && stripePromise && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <CheckoutForm setShowModal={setShowModal2}/>
+        </Elements>)}
+        
     </div>
   );
 };
