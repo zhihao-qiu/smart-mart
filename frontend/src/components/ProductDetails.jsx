@@ -2,11 +2,14 @@ import { useState } from 'react';
 
 import React from 'react';
 const ProductDetails = (props) => {
-  const { product } = props;
+  const { product, Cart, setCart } = props;
 
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
 
+  const handleClick = () => {
+    setCart([...Cart, product])
+  }
 
   return (
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
@@ -35,7 +38,7 @@ const ProductDetails = (props) => {
                       <p className="flex-auto text-lg font-medium text-slate-500">${product.price}</p>
                   </div>
               </div>
-              <button
+              <button onClick={handleClick}
                   className="
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
           text-base

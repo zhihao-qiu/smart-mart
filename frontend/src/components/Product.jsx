@@ -22,7 +22,6 @@ const Product = (props) => {
 
   const addToCart = () => {
     setCart([...Cart, product])
-    console.log(Cart);
   }
 
 
@@ -33,7 +32,7 @@ const Product = (props) => {
     <img src={product.image} alt="" className="absolute inset-0 w-full h-full object-contain rounded-lg" />
   </div>
   <form className="flex-auto p-6">
-    <div className="flex flex-col items-baseline">
+    <div className="flex-none flex-col items-baseline">
      <Link to='/productdetails' onClick={handleClick}>
       <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900" >
       <span
@@ -51,8 +50,8 @@ const Product = (props) => {
         In stock
       </div>
     </div>
-    <div className="flex space-x-4 mb-5 text-sm font-medium">
-      <div className="flex-auto flex space-x-4 pr-4">
+    <div className="flex justify-between space-x-4 mb-5 text-sm font-medium">
+      <div className="flex-none flex space-x-4 pr-4">
         <button className="flex-none px-3 w-13 h-12 uppercase font-small tracking-wider bg-slate-900 text-white" type='button' onClick={addToCart}>
           Add to cart
         </button>

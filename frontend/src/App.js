@@ -20,7 +20,7 @@ export default function App() {
         <NavBar Cart={Cart}/>
         <Routes>
           <Route path="/" element={<Home ProductData={ProductData} setProductData={setProductData} Cart={Cart} setCart={setCart}/>}/>
-          <Route path="/productdetails" element={<ProductDetails product={ProductData}/>}/>
+          <Route path="/productdetails" element={<ProductDetails product={ProductData} Cart={Cart} setCart={setCart}/>}/>
           <Route path="/order" element={<Order Cart={Cart}/>}/>
           <Route path="/completion" element={<Completion/>}/>
         </Routes>
