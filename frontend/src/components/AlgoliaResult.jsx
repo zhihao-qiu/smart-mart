@@ -11,22 +11,6 @@ const AlgoliaResult = (props) => {
       return <p>Loading...</p>;
     }
 
-    // Split the results array into subarrays of size 2
-    const rows = [];
-    for (let i = 0; i < results.length; i += 2) {
-      const row = results.slice(i, i + 2);
-      rows.push(row);
-    }
-    // Render each row of products
-    // return rows.map((row, rowIndex) => (
-    //   <div horizontal className="my-2" key={rowIndex}>
-    //     {row.map((product, index) => (
-    //       <div key={index} className='product-list'>
-    //         <Product product={product} />
-    //       </div>
-    //     ))}
-    //   </div>
-    // ));
     return results.map((product, index) => (
     <div key={index} className='product-item'>
       <Product product={product} />

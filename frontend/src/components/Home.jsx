@@ -26,7 +26,7 @@ export default function Home(props) {
         onSubmitSearch={onSubmitSearch}
         onClickReset={onClickReset}
       />}
-      {state.gptResponse && <GPTResult state={state} />}
+      {state.gptResponse && <GPTResult state={state} setProducts={props.setProducts} />}
       {/* {state.algoliaResponse && <AlgoliaResult state={state} />} */}
 
       {state.algoliaResponse && <ProductList
