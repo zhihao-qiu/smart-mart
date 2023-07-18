@@ -42,6 +42,8 @@ export default function Home(props) {
         setProductData={props.setProductData}
         Cart={props.Cart}
         setCart={props.setCart}
+        faves={props.faves}
+        setFaves={props.setFaves}
       />
     </div>
   );

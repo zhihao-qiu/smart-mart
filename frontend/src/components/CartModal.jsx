@@ -44,7 +44,7 @@ const CartModal = (props) => {
       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <img
           src={product.image}
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-scale-down object-center"
         />
       </div>
 
@@ -147,7 +147,7 @@ const CartModal = (props) => {
                           or
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="pl-2 font-medium text-indigo-600 hover:text-indigo-500"
                             onClick={() => setOpen(false)}
                           >
                             Continue Shopping

@@ -8,7 +8,12 @@ const ProductDetails = (props) => {
   const [show2, setShow2] = useState(false);
 
   const handleClick = () => {
-    setCart([...Cart, product])
+      if(product._highlightResult){
+        let name = product._highlightResult.name.value.replace(/<em>/g,'');
+        name = name.replace(/<\/em>/g,'');
+        product.name = name;
+      }
+      setCart([...Cart, {...product, quantity: 1}])
   }
 
   return (
@@ -35,7 +40,7 @@ const ProductDetails = (props) => {
               <div className="py-4 border-b border-gray-200 flex items-center justify-between">
                   <p className="text-base leading-4 text-gray-800">Price</p>
                   <div className="flex items-center justify-center">
-                      <p className="flex-auto text-lg font-medium text-slate-500">${product.price}</p>
+                      <p className="flex-auto text-lg font-medium text-slate-500">${(product.price).toFixed(2)}</p>
                   </div>
               </div>
               <button onClick={handleClick}
