@@ -21,8 +21,7 @@ const Product = (props) => {
   }
 
   const addToCart = () => {    
-    setCart([...Cart, product])
-
+    setCart([...Cart, {...product, quantity: 1}])
   }
 
 
