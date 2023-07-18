@@ -27,7 +27,7 @@ export default function App() {
   return (
     <div className="App">
       <Router>       
-        <NavBar Cart={Cart} setProducts={setProducts} showSearch={showSearch} setShowSearch={setShowSearch}/>
+        <NavBar Cart={Cart} setCart={setCart} setProducts={setProducts} showSearch={showSearch} setShowSearch={setShowSearch}/>
         <Routes>
           <Route path="/" element={<Home Products={Products} setProducts={setProducts} ProductData={ProductData} setProductData={setProductData} Cart={Cart} setCart={setCart} showSearch={showSearch} setShowSearch={setShowSearch}/>}/>
           <Route path="/productdetails" element={<ProductDetails product={ProductData} Cart={Cart} setCart={setCart}/>}/>
