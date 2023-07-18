@@ -1,5 +1,5 @@
-import 'App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import ProductDetails from './components/ProductDetails';
@@ -13,13 +13,23 @@ export default function App() {
 
   const [ProductData, setProductData] = useState({});
   const [Cart, setCart] = useState([])
+  const [Products, setProducts] = useState([]);
+  const [showSearch,setShowSearch]= useState(false);
 
+  useEffect(() => {
+    axios.get("https://fakestoreapi.com/products")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+  
   return (
     <div className="App">
       <Router>       
-        <NavBar Cart={Cart}/>
+        <NavBar Cart={Cart} setProducts={setProducts} showSearch={showSearch} setShowSearch={setShowSearch}/>
         <Routes>
-          <Route path="/" element={<Home ProductData={ProductData} setProductData={setProductData} Cart={Cart} setCart={setCart}/>}/>
+          <Route path="/" element={<Home Products={Products} setProducts={setProducts} ProductData={ProductData} setProductData={setProductData} Cart={Cart} setCart={setCart} showSearch={showSearch} setShowSearch={setShowSearch}/>}/>
           <Route path="/productdetails" element={<ProductDetails product={ProductData} Cart={Cart} setCart={setCart}/>}/>
           <Route path="/order" element={<Order cart={Cart} setCart={setCart}/>}/>
           <Route path="/completion" element={<Completion/>}/>

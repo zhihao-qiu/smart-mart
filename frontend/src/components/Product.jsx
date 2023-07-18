@@ -21,7 +21,7 @@ const Product = (props) => {
   }
 
   const addToCart = () => {
-    if(product._highlightResult.name.value){
+    if(product._highlightResult){
       let name = product._highlightResult.name.value.replace(/<em>/g,'');
       name = name.replace(/<\/em>/g,'');
       product.name = name;

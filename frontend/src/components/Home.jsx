@@ -8,6 +8,8 @@ import ProductList from './ProductList';
 
 
 export default function Home(props) {
+  const {Products} = props;
+
   const {
     state,
     setAskQuestions,
@@ -15,24 +17,15 @@ export default function Home(props) {
     onClickReset,
   } = useApplicationData();
 
-  const [Products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get("https://fakestoreapi.com/products")
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
 
   return (
     <div className="App">
-      <GPTSearch
+      {props.showSearch &&<GPTSearch
         state={state}
         setAskQuestions={setAskQuestions}
         onSubmitSearch={onSubmitSearch}
         onClickReset={onClickReset}
-      />
+      />}
       {state.gptResponse && <GPTResult state={state} />}
       {/* {state.algoliaResponse && <AlgoliaResult state={state} />} */}
 
