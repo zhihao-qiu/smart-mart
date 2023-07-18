@@ -14,7 +14,7 @@ const GPTResult = (props) => {
   return (
     <Alert key='info' variant='info' className="formatted-alert" >
       {results}
-      <br />You might be interested in these products.
+      <br /><br />You might be interested in these products.
     </Alert>
   );
 

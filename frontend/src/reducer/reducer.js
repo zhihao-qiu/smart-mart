@@ -33,7 +33,7 @@ export default function reducer(state, action) {
             requests = state.gptRequest + "Any information else about the receiptant you can share?" + action.payload + '.';
             break;
           case 4:
-            requests = state.gptRequest + "What is your price range?" + action.payload + ". Some questions and answers have been collected. Please show me some suggestions for the gift based on the above information and please reply with the format as 1.[category name]: description 2.[category name]:description";
+            requests = state.gptRequest + "What is your price range?" + action.payload + ". Some questions and answers have been collected. Please show me some suggestions for the gift based on the above information and please reply with the format as, category name: details as brands or products, no need to show the descriptive text.";
             break;
           default:
             requests = '';
