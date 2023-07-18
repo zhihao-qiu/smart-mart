@@ -1,3 +1,7 @@
 .product-item {
   margin: 10 10;
 }
+
+.formatted-alert {
+  white-space: pre-wrap;
+}

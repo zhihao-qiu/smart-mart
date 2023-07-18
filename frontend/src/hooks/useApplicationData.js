@@ -54,7 +54,7 @@ export default function useApplicationData() {
           dispatch({ type: 'SET_SHOW_TEXT', payload: 'Who are you purchasing a gift for?' });
           break;
         case 1:
-          dispatch({ type: 'SET_SHOW_TEXT', payload: 'What are the interests or hobbies of the people?' });
+          dispatch({ type: 'SET_SHOW_TEXT', payload: 'What are the interests or hobbies of the recipient?' });
           break;
         case 2:
           dispatch({ type: 'SET_SHOW_TEXT', payload: 'Any other information can you share?' });
@@ -68,7 +68,7 @@ export default function useApplicationData() {
   };
 
   const submitSearch = async () => {
-    dispatch({ type: 'SET_SHOW_TEXT', payload: 'Loading...' });
+    dispatch({ type: 'SET_SHOW_TEXT', payload: 'Calculating...' });
 
     // sending request to gpt
     const { Configuration, OpenAIApi } = require("openai");
@@ -76,7 +76,7 @@ export default function useApplicationData() {
       apiKey: GPT_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
-    console.log(state.gptRequest);
+    // console.log(state.gptRequest);
 
     const chat_completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -86,37 +86,56 @@ export default function useApplicationData() {
     const result = chat_completion.data.choices[0].message?.content;
     dispatch({ type: 'SET_GPT_RESPONSE', payload: result });
     dispatch({ type: 'SET_SHOW_TEXT', payload: 'I think...' });
-    console.log(result);
+    // console.log(result);
 
     const chat_completion_keywords = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: result + "Can you pick out all the keywords, and put them in an array?" }],
+      messages: [{ role: "user", content: result + "Identify all meaningful keywords, remove all numbers and decorative adjectives and adverbs, trim spaces at both ends of the keywords, and put them into an array." }],
     });
 
     const result_keywords = chat_completion_keywords.data.choices[0].message?.content;
-    console.log(result_keywords);
+    // console.log("result_keywords",result_keywords);
 
     const regex = /[\w\s]+/g;
     const exacted_keywords = result_keywords.match(regex);
-    console.log(exacted_keywords);
+    // console.log("exacted keywords",exacted_keywords);
 
-    dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: exacted_keywords });
+    // truncate keywords to make it shorter than 512
+    const maxLength = 512;
+    let truncatedKeywords = '';
+
+    for (let i = 0; i < exacted_keywords.length; i++) {
+      const currentKeyword = exacted_keywords[i];
+      if ((truncatedKeywords + currentKeyword).length <= maxLength) {
+        truncatedKeywords += currentKeyword;
+        if (i < exacted_keywords.length - 1) {
+          truncatedKeywords += ', ';
+        }
+      } else {
+        break;
+      }
+    }
+
+    dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: truncatedKeywords });
 
     // retrive data from algolia
     const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
     const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
+        const requestOfAlgolia = truncatedKeywords;
+        // const requestOfAlgolia = []
+        console.log("requestOfAlgolia",requestOfAlgolia);
+
     const requestOptions = {
       // page: 1,
-      // similarQuery: 'black',
+       similarQuery: requestOfAlgolia,
       // so far since we don't have pagination feature, set the hitsPerPage: 100 for now
-      hitsPerPage: 15
-    }
-    const requestOfAlgolia = state.algoliaRequest
+      hitsPerPage: 100
+    };
 
     index
       // .search(requestOfAlgolia)
-      .search(requestOfAlgolia, requestOptions)
+      .search('', requestOptions)
       .then(results => {
         console.log(results);
         dispatch({ type: 'SET_ALGOLIA_RESPONSE', payload: results });
