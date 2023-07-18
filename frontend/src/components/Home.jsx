@@ -36,7 +36,7 @@ export default function Home(props) {
         Cart={props.Cart}
         setCart={props.setCart} />}
       {/* <ProductList products={state.algoliaResponse.hits} /> */}
-      <ProductList
+      {!state.algoliaResponse && <ProductList
         products={Products}
         ProductData={props.ProductData}
         setProductData={props.setProductData}
@@ -44,7 +44,7 @@ export default function Home(props) {
         setCart={props.setCart}
         faves={props.faves}
         setFaves={props.setFaves}
-      />
+      />}
     </div>
   );
 
