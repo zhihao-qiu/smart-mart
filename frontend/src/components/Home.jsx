@@ -16,7 +16,7 @@ export default function Home(props) {
   } = useApplicationData();
 
   const [Products, setProducts] = useState([]);
-  
+
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products")
       .then((res) => {
@@ -26,8 +26,8 @@ export default function Home(props) {
   }, []);
 
   return (
-    <div className="App">   
-       <GPTSearch
+    <div className="App">
+      <GPTSearch
         state={state}
         setAskQuestions={setAskQuestions}
         onSubmitSearch={onSubmitSearch}
@@ -36,15 +36,20 @@ export default function Home(props) {
       {state.gptResponse && <GPTResult state={state} />}
       {/* {state.algoliaResponse && <AlgoliaResult state={state} />} */}
 
-      {state.algoliaResponse && <ProductList products={state.algoliaResponse.hits} />}
+      {state.algoliaResponse && <ProductList
+        products={state.algoliaResponse.hits}
+        ProductData={props.ProductData}
+        setProductData={props.setProductData}
+        Cart={props.Cart}
+        setCart={props.setCart} />}
       {/* <ProductList products={state.algoliaResponse.hits} /> */}
-      <ProductList 
+      <ProductList
         products={Products}
         ProductData={props.ProductData}
         setProductData={props.setProductData}
         Cart={props.Cart}
         setCart={props.setCart}
-        />
+      />
     </div>
   );
 

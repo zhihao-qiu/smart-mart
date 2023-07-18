@@ -5,7 +5,7 @@ const Product = (props) => {
 
   const { setProductData, Cart, setCart} = props;
   const product = props.product;
-  if (!product.name)  product.name = product.title || product.brand;
+  if (!product.name)  product.name = product.title;
 
   product.name = product.title;
   const handleClick = () => {
@@ -20,7 +20,12 @@ const Product = (props) => {
     )
   }
 
-  const addToCart = () => {    
+  const addToCart = () => {
+    if(product._highlightResult.name.value){
+      let name = product._highlightResult.name.value.replace(/<em>/g,'');
+      name = name.replace(/<\/em>/g,'');
+      product.name = name;
+    }
     setCart([...Cart, {...product, quantity: 1}])
   }
 

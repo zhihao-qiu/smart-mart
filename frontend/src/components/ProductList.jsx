@@ -5,7 +5,7 @@ export default function ProductList(props) {
 
   const {products} = props;
   const list = products.map((product) => {
-    return (<div className='product-item' key={product.id}><Product product={product} setProductData={props.setProductData} Cart={props.Cart} setCart={props.setCart}/></div>)
+    return (<div className='product-item' key={product.id || product.objectID}><Product product={product} setProductData={props.setProductData} Cart={props.Cart} setCart={props.setCart}/></div>)
   })
 
   return (
@@ -13,22 +13,4 @@ export default function ProductList(props) {
     {list}
   </div>
   )
-}
-
-ProductList.defaultProps = {
-  products: [{
-    id: 1,
-    name: "Roses",
-    image: '',
-    description: "A delightful bouquet of roses for a significant other on any special occasion",
-    price: 70
-  },
-  {
-    id: 2,
-    name: "Heart pendant",
-    image: '',
-    description: "A gold necklace with a heart pendant",
-    price: 150
-  }
-]
 }

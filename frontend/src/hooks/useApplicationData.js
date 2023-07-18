@@ -130,7 +130,7 @@ export default function useApplicationData() {
       // page: 1,
        similarQuery: requestOfAlgolia,
       // so far since we don't have pagination feature, set the hitsPerPage: 100 for now
-      hitsPerPage: 100
+      hitsPerPage: 6
     };
 
     index
