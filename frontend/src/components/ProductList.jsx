@@ -1,5 +1,5 @@
 import Product from './Product';
-import '../css/Product.css';
+
 
 export default function ProductList(props) {
 
@@ -9,7 +9,7 @@ export default function ProductList(props) {
   })
 
   return (
-  <div className='product-list' key="product-list">
+  <div className='product-list mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8' key="product-list">
     {list}
   </div>
   )

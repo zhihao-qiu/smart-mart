@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 const Product = (props) => {
 
-  let fillcolour = '';
   const { setProductData, Cart, setCart, faves, setFaves} = props;
   const [fillColour,setFillColour] = useState('gray');
   const product = props.product;
@@ -56,7 +55,7 @@ const Product = (props) => {
   <form className="flex-auto p-6">
     <div className="flex-none flex-col items-baseline">
      <Link to='/productdetails' onClick={handleClick}>
-      <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900" >
+      <h1 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900 hover:opacity-75" >
       <span
       dangerouslySetInnerHTML={{
         __html: product.name || product._highlightResult.name.value,
@@ -74,7 +73,7 @@ const Product = (props) => {
     </div>
     <div className="flex justify-between space-x-4 mb-5 text-sm font-medium">
       <div className="flex-none flex space-x-4 pr-4">
-        <button className="flex-none px-3 w-13 h-12 uppercase font-small tracking-wider bg-slate-900 text-white" type='button' onClick={addToCart}>
+        <button className="flex-none px-3 w-13 h-12 uppercase font-small tracking-wider bg-slate-900 text-white hover:opacity-75" type='button' onClick={addToCart}>
           Add to cart
         </button>
       </div>

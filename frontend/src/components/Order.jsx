@@ -98,7 +98,7 @@ const Order = (props) => {
   const subTotal = (cart.reduce((currentTotal, item) => currentTotal + item.price * item.quantity, 0)).toFixed(2);
   const gst = (subTotal * 0.05).toFixed(2);
   const pst = (subTotal * 0.07).toFixed(2);
-  const total = (parseInt(subTotal) + parseInt(gst) + parseInt(pst)).toFixed(2);
+  const total = (Number(subTotal) + Number(gst) + Number(pst)).toFixed(2);
 
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
