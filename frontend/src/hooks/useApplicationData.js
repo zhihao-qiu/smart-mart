@@ -103,17 +103,18 @@ export default function useApplicationData() {
     const maxLength = 511;
     let truncatedKeywords = 'jewellery,';
 
-    for (let i = 0; i < exacted_keywords.length; i++) {
-      const currentKeyword = exacted_keywords[i];
-      if ((truncatedKeywords + currentKeyword).length <= maxLength && currentKeyword !== ' ' && currentKeyword !=='\n') {
-        truncatedKeywords += currentKeyword;
-        if (i < exacted_keywords.length - 1) {
-          truncatedKeywords += ',';
-        }
-      } else {
-        break;
-      }
-    }
+    // this is only for demo
+    // for (let i = 0; i < exacted_keywords.length; i++) {
+    //   const currentKeyword = exacted_keywords[i];
+    //   if ((truncatedKeywords + currentKeyword).length <= maxLength && currentKeyword !== ' ' && currentKeyword !=='\n') {
+    //     truncatedKeywords += currentKeyword;
+    //     if (i < exacted_keywords.length - 1) {
+    //       truncatedKeywords += ',';
+    //     }
+    //   } else {
+    //     break;
+    //   }
+    // }
 
     console.log("exacted keywords",truncatedKeywords);
 
