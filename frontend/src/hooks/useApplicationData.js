@@ -115,7 +115,7 @@ export default function useApplicationData() {
       }
     }
 
-    console.log("exacted keywords",exacted_keywords);
+    console.log("exacted keywords",truncatedKeywords);
 
     dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: truncatedKeywords });
 
