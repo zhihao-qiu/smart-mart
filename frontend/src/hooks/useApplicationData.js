@@ -98,15 +98,14 @@ export default function useApplicationData() {
 
     const regex = /[\w\s]+/g;
     const exacted_keywords = result_keywords.match(regex);
-    console.log("exacted keywords",exacted_keywords);
 
     // truncate keywords to make it shorter than 512
     const maxLength = 511;
-    let truncatedKeywords = '';
+    let truncatedKeywords = 'jewellery,';
 
     for (let i = 0; i < exacted_keywords.length; i++) {
       const currentKeyword = exacted_keywords[i];
-      if ((truncatedKeywords + currentKeyword).length <= maxLength) {
+      if ((truncatedKeywords + currentKeyword).length <= maxLength && currentKeyword !== ' ' && currentKeyword !=='\n') {
         truncatedKeywords += currentKeyword;
         if (i < exacted_keywords.length - 1) {
           truncatedKeywords += ',';
@@ -115,6 +114,8 @@ export default function useApplicationData() {
         break;
       }
     }
+
+    console.log("exacted keywords",exacted_keywords);
 
     dispatch({ type: 'SET_ALGOLIA_REQUEST', payload: truncatedKeywords });
 
