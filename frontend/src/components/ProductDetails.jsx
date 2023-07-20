@@ -106,7 +106,7 @@ const ProductDetails = (props) => {
                           </button>
                       </div>
                       <div className={"pt-4 text-base leading-normal pr-12 mt-4 text-gray-600 " + (show2 ? "block" : "hidden")} id="sect">
-                          If you have any questions on how to return your item to us, contact us at finalproject@gmail.com.
+                          If you have any questions on how to return your item to us, contact us at smartmart@gmail.com.
                       </div>
                   </div>
               </div>

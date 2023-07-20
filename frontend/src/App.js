@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from './components/NavBar';
+import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import ProductDetails from './components/ProductDetails';
 import Order from './components/Order';
@@ -30,7 +31,8 @@ export default function App() {
       <Router>       
         <NavBar Cart={Cart} setCart={setCart} setProducts={setProducts} showSearch={showSearch} setShowSearch={setShowSearch} faves={faves}/>
         <Routes>
-          <Route path="/" element={<Home Products={Products} setProducts={setProducts} ProductData={ProductData} setProductData={setProductData} faves={faves} setFaves={setFaves} Cart={Cart} setCart={setCart} showSearch={showSearch} setShowSearch={setShowSearch}/>}/>
+          <Route path="/" element={<LandingPage/>}/>
+          <Route path="/home" element={<Home Products={Products} setProducts={setProducts} ProductData={ProductData} setProductData={setProductData} faves={faves} setFaves={setFaves} Cart={Cart} setCart={setCart} showSearch={showSearch} setShowSearch={setShowSearch}/>}/>
           <Route path="/productdetails" element={<ProductDetails product={ProductData} Cart={Cart} setCart={setCart}/>}/>
           <Route path="/order" element={<Order cart={Cart} setCart={setCart}/>}/>
           <Route path="/completion" element={<Completion/>}/>

@@ -3,6 +3,7 @@ import PaymentDetails from './PaymentDetails';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import Datepicker from "tailwind-datepicker-react";
 
 const Order = (props) => {
 
@@ -100,6 +101,41 @@ const Order = (props) => {
   const pst = (subTotal * 0.07).toFixed(2);
   const total = (Number(subTotal) + Number(gst) + Number(pst)).toFixed(2);
 
+  const options = {
+    autoHide: true,
+    todayBtn: false,
+    clearBtn: true,
+    maxDate: new Date("2030-01-01"),
+    minDate: new Date("1950-01-01"),
+    theme: {
+      background: "",
+      todayBtn: "",
+      clearBtn: "",
+      icons: "",
+      text: "",
+      disabledText: "",
+      input: "",
+      inputIcon: "",
+      selected: "",
+    },
+    icons: {
+      // () => ReactElement | JSX.Element
+      prev: () => <span>Previous</span>,
+      next: () => <span>Next</span>,
+    },
+    datepickerClassNames: "top-12",
+    defaultDate: new Date("2023-07-01"),
+    language: "en",
+  }
+
+  const [show, setShow] = useState(false);
+	const handleChange = (selectedDate = Date) => {
+		console.log(selectedDate)
+	}
+	const handleClose = () => {
+		setShow(!show);
+	}
+
   return (
     <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
       <div className="flex justify-start item-start space-y-2 flex-col ">
@@ -157,8 +193,15 @@ const Order = (props) => {
               <div className="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row  items-center md:items-start ">
                 <div className="flex justify-center md:justify-start  items-center md:items-start flex-col space-y-4 xl:mt-8">
                   <p className="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Shipping Address</p>
-                  {userInfo.address || <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">Please enter shipping address</p>}
+                  {!userInfo.address && <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">Please enter shipping address</p>}
+                  {userInfo.address && <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">{userInfo.address}</p>}
                 </div>
+                <div className="relative w-full py-12">
+				<label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+					Delivery Date:
+				</label>
+				<Datepicker show={show} setShow={(state) => setShow(state)} options={options} classNames="absolute" />
+			</div>
               </div>
               <div className="flex w-full justify-center items-center md:justify-start md:items-start">
                 <button onClick={modalClick} className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800"

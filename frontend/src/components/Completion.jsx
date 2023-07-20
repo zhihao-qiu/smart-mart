@@ -24,8 +24,8 @@ const Completion = (props) => {
                     <div className="flex justify-center items-center w-full mt-8  flex-col space-y-4 ">
                         <div className="flex md:flex-row justify-start items-start md:items-center  border border-gray-200 w-full">
                             <div className="w-40 md:w-32">
-                                <img className="hidden md:block" src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" alt="t-shirt" />
-                                <img className="md:hidden " src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" alt="t-shirt" />
+                                <img className="hidden md:block object-scale-down" src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" alt="t-shirt" />
+                                <img className="md:hidden object-scale-down" src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" alt="t-shirt" />
                             </div>
                             <div className="flex justify-start md:justify-between items-start md:items-center  flex-col md:flex-row w-full p-4 md:px-8">
                                 <div className="flex flex-col md:flex-shrink-0  justify-start items-start">
@@ -43,8 +43,8 @@ const Completion = (props) => {
                         </div>
                         <div className="flex md:flex-row justify-start items-start md:items-center  border border-gray-200 w-full">
                             <div className="w-40 md:w-32">
-                                <img className="hidden md:block" src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="jacket" />
-                                <img className="md:hidden " src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="jacket" />
+                                <img className="hidden md:block object-scale-down" src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="jacket" />
+                                <img className="md:hidden object-scale-down" src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="jacket" />
                             </div>
                             <div className="flex justify-start md:justify-between items-start md:items-center  flex-col md:flex-row w-full p-4 md:px-8">
                                 <div className="flex flex-col md:flex-shrink-0  justify-start items-start">
